@@ -301,11 +301,8 @@ Modificar en miniOne `vi /etc/ssh/ssh_config`
 
 
 
-<<<<<<< HEAD
-![image-20231127201052915](D:\UDC\MUEI\ICS\GIT-ICS\OpenNebula\img\image-20231127201052915.png)
-=======
+
 ![image-20231127201052915](img/image-20231127201052915.png)
->>>>>>> d53fffd0f824133addd26a5b6fb0dc241571a7fa
 
 
 
@@ -330,19 +327,18 @@ Crear una red privada virtual miNET2 (172.16.2.0/24). Crear una nueva máquina a
 
 Crear la red con estas configuraciones, tanto `miNET2` como `miNET3`
 
-<<<<<<< HEAD
-![image-20231127201625577](D:\UDC\MUEI\ICS\GIT-ICS\OpenNebula\img\image-20231127201625577.png)
+
+![image-20231127201625577](img/image-20231127201625577.png)
 
 
 
-![image-20231127201721685](D:\UDC\MUEI\ICS\GIT-ICS\OpenNebula\img\image-20231127201721685.png)
-=======
+
 ![image-20231127201625577](img/image-20231127201625577.png)
 
 
 
 ![image-20231127201721685](img/image-20231127201721685.png)
->>>>>>> d53fffd0f824133addd26a5b6fb0dc241571a7fa
+
 
 
 
