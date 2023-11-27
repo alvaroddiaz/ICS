@@ -26,9 +26,9 @@ docker pull wordpress:latest
 
 
 
-![descargar_mysql](D:\UDC\MUEI\ICS\Azure\imagenes_memoria\descargar_mysql.png)
+![descargar_mysql](img/descargar_mysql.png)
 
-![descargar_wordpress](D:\UDC\MUEI\ICS\Azure\imagenes_memoria\descargar_wordpress.png)
+![descargar_wordpress](img/descargar_wordpress.png)
 
 
 
@@ -115,7 +115,7 @@ Y a continuación crear el grupo de recursos:
 az group create --name miGrupoRecursos --location "West Europe"
 ```
 
-![creacion_grupo_recursos](D:\UDC\MUEI\ICS\Azure\imagenes_memoria\creacion_grupo_recursos.png)
+![creacion_grupo_recursos](img/creacion_grupo_recursos.png)
 
 
 
@@ -127,7 +127,7 @@ Para poder almacenar las imágenes docker en azure se debe crear un registro de 
 az acr create --name alvarodiazregistry --resource-group miGrupoRecursos --sku Basic
 ```
 
-<img src="D:\UDC\MUEI\ICS\Azure\imagenes_memoria\creacion_registro_contenedores.png" alt="creacion_registro_contenedores" style="zoom: 100%;" />
+<img src="img/creacion_registro_contenedores.png" alt="creacion_registro_contenedores" style="zoom: 100%;" />
 
 
 
@@ -141,7 +141,7 @@ Primero se debe hacer login en el registro de contenedores:
 az acr login --name alvarodiazregistry 
 ```
 
-<img src="D:\UDC\MUEI\ICS\Azure\imagenes_memoria\login_registro.png" alt="login_registro" style="zoom:150%;" />
+<img src="img/login_registro.png" alt="login_registro" style="zoom:150%;" />
 
 
 
@@ -152,7 +152,7 @@ docker tag mysql:5.7 alvarodiazregistry.azurecr.io/mysql:5.7
 docker tag wordpress:latest alvarodiazregistry.azurecr.io/wordpress:latest 
 ```
 
-![subir_imagenes](D:\UDC\MUEI\ICS\Azure\imagenes_memoria\subir_imagenes.png)
+![subir_imagenes](img/subir_imagenes.png)
 
 
 
@@ -162,12 +162,12 @@ Una vez etiquetadas correctamente, se habilita el acceso como administrador en e
 az acr update -n alvarodiazregistry --admin-enabled true
 ```
 
-![admin_enabled](D:\UDC\MUEI\ICS\Azure\imagenes_memoria\admin_enabled.png)
+![admin_enabled](img/admin_enabled.png)
 
 
 
 Para conocer las credenciales de `admin`, se debe acceder a la siguiente pantalla:
-![claves_admin_azure](D:\UDC\MUEI\ICS\Azure\imagenes_memoria\claves_admin_azure.png)
+![claves_admin_azure](img/claves_admin_azure.png)
 
 
 
@@ -177,7 +177,7 @@ Con el acceso de administrador habilitado y las credenciales del mismo conocidas
 docker login alvarodiazregistry.azurecr.io	
 ```
 
-![login_registro_admin](D:\UDC\MUEI\ICS\Azure\imagenes_memoria\login_registro_admin.png)
+![login_registro_admin](img/login_registro_admin.png)
 
 
 
@@ -188,13 +188,13 @@ docker push alvarodiazregistry.azurecr.io/mysql:5.7
 docker push alvarodiazregistry.azurecr.io/wordpress:latest 
 ```
 
-![push_contenedores](D:\UDC\MUEI\ICS\Azure\imagenes_memoria\push_contenedores.png)
+![push_contenedores](img/push_contenedores.png)
 
 
 
 Se comprueba desde la web de azure la correcta subida de las imágenes:
 
-![repositorios_azure](D:\UDC\MUEI\ICS\Azure\imagenes_memoria\repositorios_azure.png)
+![repositorios_azure](img/repositorios_azure.png)
 
 
 
@@ -207,7 +207,7 @@ Para crear la aplicación, primero se debe configurar un plan para la misma.
 az appservice plan create --name alvarodiaz-appservice-plan --resourcegroup miGrupoRecursos --sku B1 --is-linux
 ```
 
-![creacion_appservice](D:\UDC\MUEI\ICS\Azure\imagenes_memoria\creacion_appservice.png)
+![creacion_appservice](img/creacion_appservice.png)
 
 
 
@@ -219,11 +219,11 @@ Una vez creado el plan para la aplicación se procede a su despliegue.
 az webapp create --name AlvaroDiazWebApp --plan alvarodiazappservice-plan --resource-group miGrupoRecursos --multicontainer-configfile docker-compose.yml --multicontainer-config-type COMPOSE
 ```
 
-![creacion_appweb_1](D:\UDC\MUEI\ICS\Azure\imagenes_memoria\creacion_appweb_1.png)
+![creacion_appweb_1](img/creacion_appweb_1.png)
 
-![creacion_appweb_2](D:\UDC\MUEI\ICS\Azure\imagenes_memoria\creacion_appweb_2.png)
+![creacion_appweb_2](img/creacion_appweb_2.png)
 
-![creacion_appweb_3](D:\UDC\MUEI\ICS\Azure\imagenes_memoria\creacion_appweb_3.png)
+![creacion_appweb_3](img/creacion_appweb_3.png)
 
 
 
@@ -233,7 +233,7 @@ Para que la app acceda al registro de contenedores que se ha creado y no a Docke
 az webapp config container set --name AlvaroDiazWebApp --resource-group miGrupoRecursos --docker-registry-server-url alvarodiazregistry.azurecr.io --docker-registry-server-user alvarodiazregistry --docker-registry-server-password AHCKnwSUnwpIImHW2wLkodeGEsmox4+kr7kOUh21Rz+ACRCJ1Uzo 
 ```
 
-![acceda_al_registro_de_contenedores](D:\UDC\MUEI\ICS\Azure\imagenes_memoria\acceda_al_registro_de_contenedores.png)
+![acceda_al_registro_de_contenedores](img/acceda_al_registro_de_contenedores.png)
 
 
 
@@ -247,7 +247,7 @@ Al ser la primera vez que se accede a la app, es necesario configurar e instalar
 
 http://alvarodiazwebapp.azurewebsites.net/wp-admin/install.php
 
-![instalar_wordpress_server](D:\UDC\MUEI\ICS\Azure\imagenes_memoria\instalar_wordpress_server.png)
+![instalar_wordpress_server](img/instalar_wordpress_server.png)
 
 
 
@@ -255,7 +255,7 @@ http://alvarodiazwebapp.azurewebsites.net/wp-admin/install.php
 
 Se ha creado la nueva publicación "Mi primera entrada de blog!":
 
-![posts_wordpress](D:\UDC\MUEI\ICS\Azure\imagenes_memoria\posts_wordpress.png)
+![posts_wordpress](img/posts_wordpress.png)
 
 
 
@@ -263,4 +263,4 @@ Se ha creado la nueva publicación "Mi primera entrada de blog!":
 
 Al entrar en la publicación, se pueden ver los comentarios, la fecha de publicación de la entrada y, si la tiene, la categoría.
 
- ![comentarios_wordpress](D:\UDC\MUEI\ICS\Azure\imagenes_memoria\comentarios_wordpress.png)
+ ![comentarios_wordpress](img/comentarios_wordpress.png)
